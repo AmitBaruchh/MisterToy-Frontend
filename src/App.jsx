@@ -20,6 +20,7 @@ export function App() {
                             <Route element={<HomePage />} path="/" />
                             <Route element={<ToyIndex />} path="/toy" />
                             <Route element={<ToyDetails />} path="/toy/:toyId" />
+                            <Route element={<ToyEdit />} path="/toy/edit/:toyId?" />
                         </Routes>
                     </main>
                     <AppFooter />
