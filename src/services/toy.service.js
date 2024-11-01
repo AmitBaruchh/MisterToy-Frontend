@@ -37,6 +37,20 @@ function query(filterBy = {}) {
             toys = toys.filter(toy => filterBy.labels.every(label => toy.labels.includes(label)))
         }
 
+        const { type, desc } = filterBy.sortBy
+
+        const numDesc = desc * 1
+
+        if (type) {
+            toys.sort((t1, t2) => {
+                if (type === 'name') {
+                    return t1.name.localeCompare(t2.name) * numDesc
+                } else if (type === 'price' || type === 'createdAt') {
+                    return (t1[type] - t2[type]) * numDesc
+                }
+            })
+        }
+
         return toys
     })
 }
@@ -81,7 +95,16 @@ function getRandomToy() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', price: '', inStock: '' }
+    return {
+        txt: '',
+        inStock: null,
+        labels: [],
+        pageIdx: 0,
+        sortBy: {
+            type: '',
+            desc: 1,
+        },
+    }
 }
 
 function _getRandomLabels(numOfLabels = 2) {

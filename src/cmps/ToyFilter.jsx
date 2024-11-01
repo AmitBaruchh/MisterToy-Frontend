@@ -10,7 +10,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
     useEffect(() => {
         debouncedOnSetFilter.current(filterByToEdit)
-    }, [filterByToEdit])
+    }, [filterByToEdit, filterByToEdit.sortBy])
 
     function handleChange({ target }) {
         const field = target.name
@@ -29,8 +29,20 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                 value = target.checked
                 break
         }
-
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+        if (field === 'desc') {
+            value = target.checked ? -1 : 1
+            setFilterByToEdit(prevFilter => ({
+                ...prevFilter,
+                sortBy: { ...prevFilter.sortBy, desc: value },
+            }))
+        } else if (field === 'type') {
+            setFilterByToEdit(prevFilter => ({
+                ...prevFilter,
+                sortBy: { ...prevFilter.sortBy, type: value },
+            }))
+        } else {
+            setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+        }
     }
 
     function onSubmitFilter(ev) {
@@ -77,6 +89,22 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         </option>
                     ))}
                 </select>
+
+                <select name="type" value={filterByToEdit.sortBy.type} onChange={handleChange}>
+                    <option value="">Sort by</option>
+                    <option value="name">Name</option>
+                    <option value="price">Price</option>
+                    <option value="createdAt">Date</option>
+                </select>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="desc"
+                        checked={filterByToEdit.sortBy.desc < 0}
+                        onChange={handleChange}
+                    />
+                    Descending
+                </label>
             </form>
         </section>
     )
