@@ -8,6 +8,7 @@ import { HomePage } from './pages/HomePage'
 import { ToyIndex } from './pages/ToyIndex'
 import { ToyDetails } from './pages/ToyDetails'
 import { AppFooter } from './cmps/AppFooter'
+import { ToyEdit } from './pages/ToyEdit'
 
 export function App() {
     return (
