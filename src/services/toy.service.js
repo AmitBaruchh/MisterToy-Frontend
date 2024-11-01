@@ -51,10 +51,11 @@ function getEmptyToy() {
 
 function getRandomToy() {
     return {
-        name: 'Toy-' + utilService.makeId(),
+        name: 'Toy-' + utilService.makeId(3),
         price: utilService.getRandomIntInclusive(10, 100),
         labels: _getRandomLabels(),
         inStock: Math.random() > 0.5,
+        _id: utilService.makeId(),
     }
 }
 
