@@ -1,0 +1,17 @@
+:root {
+    --clr1: #5d4037e5;
+    --clr2: #8d6e63;
+
+    /* UserMsg */
+    --clr-success: #4caf50;
+    --clr-error: #f44336;
+
+    --clr1bg: #efebe9;
+    --clr1bg-light: #faf3e0;
+    --clr2bg: #d7ccc8;
+    --clr2bg-light: #e7d7cd;
+
+    --gray1: rgb(240, 240, 240);
+    --gray2: rgb(155, 155, 155);
+    --gray3: rgb(44, 44, 44);
+}

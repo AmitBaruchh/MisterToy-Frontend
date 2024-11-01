@@ -1,0 +1,79 @@
+.toy-edit {
+    background-color: var(--clr2bg);
+    padding: 2em;
+    max-width: 400px;
+    margin: 2em auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toy-edit h2 {
+    font-size: 1.5em;
+    color: var(--clr1);
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.toy-edit form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.toy-edit label {
+    font-size: 1em;
+    color: var(--clr2);
+    margin-bottom: 0.1em;
+    font-weight: bold;
+}
+
+.toy-edit input[type='text'],
+.toy-edit input[type='number'] {
+    padding: 0.5em;
+    border: 1px solid var(--gray2);
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100%;
+    background-color: var(--clr1bg);
+}
+
+.labels-checkboxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8em;
+    margin-top: 0.5em;
+}
+
+.labels-checkboxes div {
+    display: flex;
+    align-items: center;
+}
+
+.labels-checkboxes label {
+    margin-left: 0.5em;
+    font-size: 0.9em;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.toy-edit button {
+    grid-column: span 2;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    color: #fff;
+    background-color: var(--clr1);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.toy-edit button:hover {
+    background-color: var(--clr2);
+}
+
+.toy-edit a {
+    color: var(--clr2);
+    text-align: center;
+    margin-top: 0.5em;
+    text-decoration: underline;
+}
