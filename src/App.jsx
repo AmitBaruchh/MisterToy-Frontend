@@ -1,7 +1,30 @@
-import { useState } from 'react'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Provider } from 'react-redux'
+
+import { store } from './store/store'
+
+import { AppHeader } from './cmps/AppHeader'
+import { HomePage } from './pages/HomePage'
+import { ToyIndex } from './pages/ToyIndex'
+import { ToyDetails } from './pages/ToyDetails'
+import { AppFooter } from './cmps/AppFooter'
 
 export function App() {
-    const [count, setCount] = useState(0)
-
-    return <></>
+    return (
+        <Provider store={store}>
+            <Router>
+                <section className="app">
+                    <AppHeader />
+                    <main className="main-layout">
+                        <Routes>
+                            <Route element={<HomePage />} path="/" />
+                            <Route element={<ToyIndex />} path="/toy" />
+                            <Route element={<ToyDetails />} path="/toy/:toyId" />
+                        </Routes>
+                    </main>
+                    <AppFooter />
+                </section>
+            </Router>
+        </Provider>
+    )
 }
