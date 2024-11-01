@@ -1,3 +1,4 @@
+import { legacy_createStore } from 'redux'
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 
@@ -14,10 +15,30 @@ export const toyService = {
     getLabels,
     getEmptyToy,
     getRandomToy,
+    getDefaultFilter,
 }
 
-function query() {
-    return storageService.query(TOY_STORAGE_KEY)
+function query(filterBy = {}) {
+    return storageService.query(TOY_STORAGE_KEY).then(toys => {
+        if (filterBy.txt) {
+            const regExp = new RegExp(filterBy.txt, 'i')
+            toys = toys.filter(toy => regExp.test(toy.name))
+        }
+
+        if (filterBy.price) {
+            toys = toys.filter(toy => toy.price >= filterBy.price)
+        }
+
+        if (filterBy.inStock) {
+            toys = toys.filter(toy => toy.inStock === JSON.parse(filterBy.inStock))
+        }
+
+        if (filterBy.labels && filterBy.labels.length) {
+            toys = toys.filter(toy => filterBy.labels.every(label => toy.labels.includes(label)))
+        }
+
+        return toys
+    })
 }
 
 function getById(toyId) {
@@ -57,6 +78,10 @@ function getRandomToy() {
         inStock: Math.random() > 0.5,
         _id: utilService.makeId(),
     }
+}
+
+function getDefaultFilter() {
+    return { txt: '', price: '', inStock: '' }
 }
 
 function _getRandomLabels(numOfLabels = 2) {

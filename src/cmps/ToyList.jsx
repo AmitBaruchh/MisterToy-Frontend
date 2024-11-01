@@ -1,4 +1,4 @@
-import { ToyPreview } from './ToyPreview'
+import { ToyPreview } from './ToyPreview.jsx'
 
 export function ToyList({ toys, onRemoveToy }) {
     return (

@@ -3,14 +3,14 @@ import './assets/style/main.css'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import { store } from './store/store'
+import { store } from './store/store.js'
 
-import { AppHeader } from './cmps/AppHeader'
-import { HomePage } from './pages/HomePage'
-import { ToyIndex } from './pages/ToyIndex'
-import { ToyDetails } from './pages/ToyDetails'
-import { AppFooter } from './cmps/AppFooter'
-import { ToyEdit } from './pages/ToyEdit'
+import { AppHeader } from './cmps/AppHeader.jsx'
+import { HomePage } from './pages/HomePage.jsx'
+import { ToyIndex } from './pages/ToyIndex.jsx'
+import { ToyDetails } from './pages/ToyDetails.jsx'
+import { AppFooter } from './cmps/AppFooter.jsx'
+import { ToyEdit } from './pages/ToyEdit.jsx'
 
 export function App() {
     return (

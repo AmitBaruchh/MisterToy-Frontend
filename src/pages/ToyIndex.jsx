@@ -1,23 +1,24 @@
 import { useSelector } from 'react-redux'
 import { ToyList } from '../cmps/ToyList.jsx'
-import { loadToys, removeToyOptimistic, saveToy } from '../store/actions/toy.actions.js'
+import { loadToys, removeToyOptimistic, saveToy, setFilterBy } from '../store/actions/toy.actions.js'
 import { useEffect } from 'react'
 import { toyService } from '../services/toy.service.js'
 import { Link } from 'react-router-dom'
+import { ToyFilter } from '../cmps/ToyFilter.jsx'
 
 export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
+
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
+    const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
 
     useEffect(() => {
         loadToys().catch(err => {
             console.log('Cannot load toys:', err)
         })
-    }, [])
+    }, [filterBy])
 
     function onRemoveToy(toyId) {
-        console.log('toyId:', toyId)
-
         removeToyOptimistic(toyId)
             .then(() => {
                 console.log('Toy removed')
@@ -38,6 +39,10 @@ export function ToyIndex() {
             })
     }
 
+    function onSetFilter(filterBy) {
+        setFilterBy(filterBy)
+    }
+
     return (
         <section className="toy-index">
             <h3>Toys App</h3>
@@ -46,6 +51,8 @@ export function ToyIndex() {
                 <button className="add-btn" onClick={onAddToy}>
                     Add Random Toy 🧸
                 </button>
+                <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+
                 {!isLoading ? <ToyList toys={toys} onRemoveToy={onRemoveToy} /> : <div>Loading...</div>}
                 <hr />
             </main>
