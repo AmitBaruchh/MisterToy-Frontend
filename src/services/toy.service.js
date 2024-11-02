@@ -34,7 +34,8 @@ function query(filterBy = {}) {
         }
 
         if (filterBy.labels && filterBy.labels.length) {
-            toys = toys.filter(toy => filterBy.labels.every(label => toy.labels.includes(label)))
+            if (filterBy.labels[0] !== 'all')
+                toys = toys.filter(toy => filterBy.labels.every(label => toy.labels.includes(label)))
         }
 
         const { type, desc } = filterBy.sortBy

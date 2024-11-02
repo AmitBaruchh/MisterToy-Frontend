@@ -83,7 +83,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
                 <label htmlFor="labels">Labels:</label>
                 <select multiple name="labels" value={filterByToEdit.labels || []} onChange={handleChange}>
-                    <option value="">Labels</option>
+                    <option value="all">Labels</option>
                     {toyLabels.map(label => (
                         <option key={label} value={label}>
                             {label}
