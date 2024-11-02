@@ -52,8 +52,8 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
     return (
         <section className="toy-filter full main-layout">
-            <h2>Toys Filter</h2>
-            <form onSubmit={onSubmitFilter}>
+            <h2>Toys Filter and Sort</h2>
+            <form onSubmit={onSubmitFilter} className="filter-form">
                 <label htmlFor="name">Name:</label>
                 <input
                     type="text"
@@ -81,6 +81,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     <option value="false">Out of Stock</option>
                 </select>
 
+                <label htmlFor="labels">Labels:</label>
                 <select multiple name="labels" value={filterByToEdit.labels || []} onChange={handleChange}>
                     <option value="">Labels</option>
                     {toyLabels.map(label => (
